@@ -38,6 +38,22 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-radio-group formControlName="type">
+            <mat-radio-button name="type" value="company">Company</mat-radio-button>
+            <mat-radio-button name="type" value="customer">Customer</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row" *ngIf="form.get('type').value === 'company'">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input placeholder="company name" formControlName="companyName" matInput type="text">
+          </mat-form-field>
+        </div>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button [disabled]="form.invalid" mat-raised-button type="submit">Registro</button>
