@@ -6,9 +6,24 @@ export class MyValidators {
     const value = control.value;
     console.log(value);
     if (value > 10000) {
-      return {price_invalid: true};
+      return { price_invalid: true };
     }
     return null;
+  }
+
+  static isValidPassword(control: AbstractControl) {
+    const value = control.value;
+    if (MyValidators.containsNumber(value)) return null;
+
+    return { invalid_password: true };
+  }
+
+  isNumber(value: string): boolean {
+    return !isNaN(parseInt(value, 10));
+  }
+
+  private static containsNumber(value?: string): boolean {
+    return /\d/.test(value);
   }
 
 }
