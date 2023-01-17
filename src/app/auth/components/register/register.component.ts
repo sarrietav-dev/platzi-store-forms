@@ -30,17 +30,18 @@ export class RegisterComponent implements OnInit {
     if (this.form.valid) {
       const value = this.form.value;
       this.authService.createUser(value.email, value.password)
-      .then(() => {
-        this.router.navigate(['/auth/login']);
-      });
+        .then(() => {
+          this.router.navigate(['/auth/login']);
+        });
     }
   }
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6), MyValidators.isValidPassword]],
-    });
+      email: [''],
+      password: ['', [Validators.minLength(6), MyValidators.isValidPassword]],
+      confirmPassword: ['']
+    }, { validators: [Validators.required, MyValidators.matchPassword] });
   }
 
 }

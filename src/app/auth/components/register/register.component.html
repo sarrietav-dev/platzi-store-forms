@@ -29,8 +29,13 @@
         <div class="col-xs">
           <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input placeholder="password" formControlName="password" matInput type="password">
+            <input placeholder="password" formControlName="confirmPassword" matInput type="password">
           </mat-form-field>
+          <div *ngIf="form.get('confirmPassword').touched && form.errors">
+            <mat-error *ngIf="form.hasError('match_password')">
+              Las constraseñas no coinciden
+            </mat-error>
+          </div>
         </div>
       </div>
     </mat-card-content>
